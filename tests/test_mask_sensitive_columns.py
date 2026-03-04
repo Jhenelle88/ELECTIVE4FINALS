@@ -1,5 +1,5 @@
 
-"""Tests for mask_sensitive_columns | Jhenelle O. Carpio | BS CpE 4C"""
+"""Tests for mask_sensitive_columns """
 
 import pytest
 from src.mask_sensitive_columns import mask_sensitive_columns

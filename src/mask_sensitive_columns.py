@@ -1,7 +1,7 @@
 
 
 """
-Mask sensitive columns in CSV files | Jhenelle Carpio | CpE 4C
+Mask sensitive columns in CSV files
 """
 
 from pathlib import Path
