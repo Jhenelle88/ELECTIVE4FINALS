@@ -1,0 +1,76 @@
+2026-03-22 21:59:43,863 ERROR src.processor: Error decrypting testing_bin.bin
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 61, in decrypt_csv_output
+    decrypted_chunk = fernet.decrypt(encrypted_chunk)
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 85, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 119, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\processor.py", line 89, in _process_encrypted_file
+    dec_path_unmasked = decrypt_csv_output(bin_path, mask=False)
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 63, in decrypt_csv_output
+    raise ValueError("Decryption failed. Invalid or wrong encryption key.")
+ValueError: Decryption failed. Invalid or wrong encryption key.
+2026-03-22 22:00:57,218 ERROR src.processor: Error decrypting testing_bin.bin
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 61, in decrypt_csv_output
+    decrypted_chunk = fernet.decrypt(encrypted_chunk)
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 85, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 119, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\processor.py", line 98, in _process_encrypted_file
+    dec_path_unmasked = decrypt_csv_output(bin_path, mask=False)
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 63, in decrypt_csv_output
+    raise ValueError("Decryption failed. Invalid or wrong encryption key.")
+ValueError: Decryption failed. Invalid or wrong encryption key.
+2026-03-22 22:07:10,311 ERROR src.processor: Error decrypting testing_bin.bin
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 61, in decrypt_csv_output
+    decrypted_chunk = fernet.decrypt(encrypted_chunk)
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 85, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 119, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\processor.py", line 98, in _process_encrypted_file
+    dec_path_unmasked = decrypt_csv_output(bin_path, mask=False)
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 63, in decrypt_csv_output
+    raise ValueError("Decryption failed. Invalid or wrong encryption key.")
+ValueError: Decryption failed. Invalid or wrong encryption key.
+2026-03-22 22:09:36,190 ERROR src.processor: Error decrypting testing_bin.bin
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 61, in decrypt_csv_output
+    decrypted_chunk = fernet.decrypt(encrypted_chunk)
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 85, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\carpi\AppData\Roaming\Python\Python314\site-packages\cryptography\fernet.py", line 119, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\processor.py", line 98, in _process_encrypted_file
+    dec_path_unmasked = decrypt_csv_output(bin_path, mask=False)
+  File "C:\Users\carpi\Documents\GitHub\ELECTIVE4FINALS\src\decrypt_csv.py", line 63, in decrypt_csv_output
+    raise ValueError("Decryption failed. Invalid or wrong encryption key.")
+ValueError: Decryption failed. Invalid or wrong encryption key.

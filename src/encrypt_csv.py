@@ -43,13 +43,21 @@ def encrypt_csv_output(csv_file: str | Path) -> Path:
     key = config.DEFAULT_KEY
     fernet = Fernet(key.encode() if isinstance(key, str) else key)
 
+    # Chunked encryption for large files
+    chunk_size = 1024 * 1024  # 1MB per chunk
+    encrypted_chunks = []
     with open(csv_path, "rb") as f:
-        data = f.read()
-
-    encrypted_data = fernet.encrypt(data)
+        while True:
+            chunk = f.read(chunk_size)
+            if not chunk:
+                break
+            encrypted_chunk = fernet.encrypt(chunk)
+            # Write the length of the encrypted chunk followed by the chunk itself
+            encrypted_chunks.append(len(encrypted_chunk).to_bytes(4, 'big') + encrypted_chunk)
 
     with open(output_path, "wb") as f:
-        f.write(encrypted_data)
+        for enc in encrypted_chunks:
+            f.write(enc)
 
     return output_path
 

@@ -17,7 +17,7 @@ DEFAULT_KEY = _key.strip() or None
 SENSITIVE_COLUMN_PATTERNS = [
     "ssn", "social_security", "credit_card", "cc_number", "card_number",
     "password", "secret", "api_key", "token", "email", "phone", "dob",
-    "student_id", "studentid", "id_number", "identifier"
+    "student_id", "studentid", "id_number", "identifier", "address"
 ]
 
 # Checksum file extension

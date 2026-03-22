@@ -1,18 +1,40 @@
 """Main orchestrator - processes all CSV files from input folder to output folder."""
 
 import logging
+from logging.handlers import RotatingFileHandler
 import os
 from pathlib import Path
 
 from . import config
 from .mask_sensitive_columns import mask_sensitive_columns
+from .summarize_and_visualize import summarize_and_visualize
 from .generate_checksum import generate_checksum
 from .verify_file_integrity import verify_file_integrity
 from .encrypt_csv import encrypt_csv_output
 from .decrypt_csv import decrypt_csv_output
 
-logging.basicConfig(level=logging.INFO)
+
+# Set up logging to file and console
+LOG_DIR = (Path(__file__).resolve().parent.parent / "logs")
+LOG_DIR.mkdir(exist_ok=True)
+LOG_FILE = LOG_DIR / "error.log"
+
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# File handler with rotation
+file_handler = RotatingFileHandler(LOG_FILE, maxBytes=1024*1024, backupCount=3)
+file_handler.setLevel(logging.ERROR)
+file_formatter = logging.Formatter('%(asctime)s %(levelname)s %(name)s: %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+# Console handler
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_formatter = logging.Formatter('%(levelname)s: %(message)s')
+console_handler.setFormatter(console_formatter)
+logger.addHandler(console_handler)
 
 CSV_EXTENSIONS = {".csv"}
 ENCRYPTED_EXTENSION = ".bin"
@@ -41,11 +63,19 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
                     raise
 
         # Mask the original CSV for security
+
         masked_path = mask_sensitive_columns(csv_path)
         result["outputs"].append(str(masked_path.name))
 
         checksum_path, _ = generate_checksum(masked_path)
         result["outputs"].append(str(checksum_path.name))
+
+        # Generate summary and visualizations for masked output
+        try:
+            summarize_and_visualize(masked_path, output_dir=masked_path.parent)
+            result["outputs"].append(f"{masked_path.stem}_summary.txt")
+        except Exception as viz_err:
+            logger.warning(f"Visualization failed for {masked_path.name}: {viz_err}")
 
     except Exception as e:
         logger.exception("Error processing %s", csv_path.name)

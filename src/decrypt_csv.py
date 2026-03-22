@@ -47,13 +47,21 @@ def decrypt_csv_output(csv_file: str | Path, mask: bool = False) -> Path:
     key = config.DEFAULT_KEY
     fernet = Fernet(key.encode() if isinstance(key, str) else key)
 
+    decrypted_data = b""
     with open(encrypted_path, "rb") as f:
-        encrypted_data = f.read()
-
-    try:
-        decrypted_data = fernet.decrypt(encrypted_data)
-    except InvalidToken:
-        raise ValueError("Decryption failed. Invalid or wrong encryption key.")
+        while True:
+            len_bytes = f.read(4)
+            if not len_bytes:
+                break
+            chunk_len = int.from_bytes(len_bytes, 'big')
+            encrypted_chunk = f.read(chunk_len)
+            if not encrypted_chunk:
+                break
+            try:
+                decrypted_chunk = fernet.decrypt(encrypted_chunk)
+            except InvalidToken:
+                raise ValueError("Decryption failed. Invalid or wrong encryption key.")
+            decrypted_data += decrypted_chunk
 
     # If masking is requested, mask the sensitive columns
     if mask:
